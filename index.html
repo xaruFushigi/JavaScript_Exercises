@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        
+        <!--UTF-8 meta tag-->
+        <meta charset="UTF-8">
+        <!--END OF meta tag-->
+        
+        <!--Google Fonts: Open Sans-->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto:wght@300&display=swap" rel="stylesheet"> 
+        <!--END OF Google Fonts-->
+
+        <!--OWN CSS stylesheet-->
+        <link href="style.css" rel="stylesheet">
+        <!--END OF link to OWN CSS stylesheet-->
+
+    </head>
+
+    <body>
+
+        <form>
+         <div class="container">
+
+           <!--Input Container-->
+           <!--User inputs list of Grocery into the textfield. 
+                -Textfield collects items within an array.
+                -Each time Submit button pressed array is filled with new item
+             -->
+           <div class="inputContainer"> 
+            <label id="inputFieldGroceryLabel">Grocery item: <!--Labe of Inputfield-->
+                <input type="text" id="inputFieldGrocery"> <!--Inputfield connected to "const arrayOfGrocery = [];"-->
+                <input type="button" id="submitButton" value="Submit"> 
+            </label>
+           </div>
+           <!--END OF Input Container-->
+
+           <!--List Container-->
+           <div class="listContainer">
+            <ul>
+                <li id="groceryItem0"> </li>
+                <li id="groceryItem1"> </li>
+                <li id="groceryItem2"> </li>
+                <li id="groceryItem3"> </li>
+            </ul>
+          </div>
+          <!--END OF List Container-->
+
+         </div>
+            
+            
+        </form>
+
+    <script src="script.js"></script>
+    </body>
+</html>

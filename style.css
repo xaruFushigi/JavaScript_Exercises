@@ -1,0 +1,47 @@
+html, body {
+    align-items: center;
+    display: grid;
+    justify-content: center;
+    margin: 0 auto;
+    height: 100%;
+}
+
+.container{
+    border: 2px solid;
+    border-radius: 10px;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 60%;
+    padding-top: 10%;
+    padding-right: 10%;
+    padding-left: 10%;
+    padding-bottom: 10%;
+    width: 100%;
+    
+}
+
+.inputContainer{
+    display: flex;
+    justify-content: start;
+}
+    #inputFieldGrocery{
+        border-color: #f1f6ff;
+        background-color: #f1f6ff;
+        border-radius: 7px;
+    }
+        #submitButton{
+            border-color: #74767b;
+            background-color:#74767b; 
+            
+            border-radius: 12px;
+            padding: 4px 17px 4px 17px;
+        }
+
+    .listContainer{
+        display: flex;
+        justify-content: start;
+        height: 100%;
+        width: 100%;
+    }
