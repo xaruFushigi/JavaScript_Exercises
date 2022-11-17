@@ -350,7 +350,6 @@ str = str.split("");
 for(let i = 0; i < str.length; i++) {
     var str2 = str.map(element => {
         if (element === alphabet[i]) {
-
           return str2 = alphabet[i+1];
         }
         else {
@@ -623,6 +622,8 @@ for (let i = 0; i < array.length; i++) {
 }
 */
 
+/*
+
 //75
 
 let array = [3, 3, 1];
@@ -775,35 +776,432 @@ const player2 = new PLayer();
 console.log(player2.score);   
 //////////////////////////////////////////////////////////////////////////////////
 
+*/
+
+/*
 ////////////////////variables////////////////////////////////////////////////////
-let button = document.getElementById("submitButton");
-let input  = document.getElementById("inputFieldGrocery");
-let ul     = document.querySelector("ul");
-var li     = document.createElement("li");
+let button     = document.getElementById("submitButton");
+let input      = document.getElementById("inputFieldGrocery");
+let ul         = document.querySelector("#groceryParent");
+// let li         = document.getElementsByTagName("li");
+// let items      = ul.getElementsByTagName("li");
+
 ////////////////////functions////////////////////////////////////////////////////
+
+//  measures length of input field value
 function inputLength(){
     return input.value.length;
 };
 
+//  creates list element which includes value from text field
 function listCreator(){
-    li.appendChild(document.createTextNode(input.value));   //appends and creates list and receives value from input field
-    ul.appendChild(li);                                     //appends additional list to ul
-    input.value = "";                                       //cleares input field
+let li  = document.createElement("li");                                     //variable "li" should be local, os that after click it refreshes its value
+    li.appendChild(document.createTextNode(input.value));                   //receives value from input field and creates list element
+    ul.appendChild(li);                                                     //appends additional list element to ul
+    input.value = "";                                                       //cleares input field
 };
 
+//  adds List element after clicking submit button
 function addListAfterClick () {
-    if(inputLength() > 0) {  
-        listCreator(); 
-    }
-}
+    if(inputLength() > 0) {                                                 //checkes input field value for length
+       listCreator();                                                       //receives function from listCreator() to append list element
+       buttonNextToListElement();
+       buttonRemoveFromListElement();
+    };
+};
 
+//  adds List element after pressing Enter button
 function addListAfterPress(event) {
-    if(inputLength() > 0 && event.key === 'Enter') {
-        listCreator(); 
-        };
-};     
+    if(inputLength() > 0 && event.key === 'Enter') {                        //checkes input field value for length AND Enter key press
+       listCreator();                                                       //receives function from listCreator() to append list element
+       buttonNextToListElement();
+       buttonRemoveFromListElement();
+       event.preventDefault();                                              //prevents page from reload/refreshing
+    };
+}; 
+
+//  creates button next to list element to use toggleList() function to cross over word in list element
+function buttonNextToListElement() {
+    var buttonOfListElement = document.createElement("input");               //variable for creating button
+
+        buttonOfListElement.setAttribute("type" ,"button");                  //creates input type="button"
+        buttonOfListElement.setAttribute("value","cross");                   //appends textOnButton to buttonOfListElement
+        buttonOfListElement.setAttribute("class","cross")
+        ul.appendChild(buttonOfListElement);                                 //appends buttonOfListElement to list
+
+        buttonOfListElement.addEventListener("click",toggleList);            //calls toggle List function to cross over the list element after clicking the button
+};
+
+//  toggles the list item with ".done" class from CSS
+function toggleList(){
+    let li = document.querySelector("li");                                   //variable for picking list element 
+        li.classList.toggle("done");                                         //selects "done" class from CSS for crossing word
+};
+
+//  deletes button next to list element to use function removeListElement() function
+function buttonRemoveFromListElement() {
+    let RemoveButtonOfListElement = document.createElement("input");         //variable for creating button
+
+        RemoveButtonOfListElement.setAttribute("type" ,"button");            //creates input type="button"
+        RemoveButtonOfListElement.setAttribute("value","delete");            //appends textOnButton to buttonOfListElement
+        RemoveButtonOfListElement.setAttribute("class","delete");           //appends textOnButton to buttonOfListElement
+
+        ul.appendChild(RemoveButtonOfListElement);                           //appends RemoveButtonOfListElement to list
+        RemoveButtonOfListElement.addEventListener("click",removeListElement);//calls toggleList function to cross over the list element after clicking the button
+};
+//  removes list element after click
+function removeListElement(){
+    let li = document.querySelector("li");                                   //variable for picking list element 
+    
+        ul.removeChild(li);
+        document.getElementsByClassName(".delete").style.visibility = "hidden";
+        document.getElementsByClassName(".cross").style.visibility  = "hidden";
+};
+
+//  hide buttons after clicking "delete" button
+
 ////////////////////EventListeners////////////////////////////////////////////////////
 button.addEventListener("click", addListAfterClick);
 
 input.addEventListener("keypress", addListAfterPress);
-///////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////
+
+*/
+
+/*
+
+const submitButton   = document.getElementById("submitButton");
+const myList         = document.querySelector("#groceryParent");
+const input          = document.getElementById("inputFieldGrocery");
+
+
+
+function lengthOfInputValue(){
+    return input.value.length;
+};
+
+function inputValueOut(){
+    
+    var listItem      = document.createElement("li");
+    //adding input value to the list
+          listItem.addEventListener("click",toggle);
+          listItem.textContent = input.value;
+          myList.append(listItem);
+    //adding delete button to the list
+    const deleteButton = document.createElement("input");
+          deleteButton.setAttribute("type", "button");
+          deleteButton.setAttribute("value", "delete");
+          deleteButton.setAttribute("class", "deleteBtn");
+          deleteButton.addEventListener("click", delButton);  
+          myList.append(deleteButton);
+    //setting value of text field to blank    
+          input.value = "";
+    //function of delete button to remove "li" and make button hiddne
+          function delButton (){    //nested function    
+            listItem.remove();      //removes list item when pressed button delete
+            deleteButton.style.display = "none"; 
+            }
+    //function to toggle/cross the list item
+            function toggle (){    //nested function for crossing list item when clicked
+                listItem.classList.toggle("done");   // CSS style for crossing list item when clicked
+            };
+};
+
+//input value is typed onto HTML file
+function submitValueAfterClick (event){
+        if(lengthOfInputValue() > 0) { // if length of input value is over 0 
+           inputValueOut();            // input value appears in format of list 
+           event.preventDefault();     // prevents window from refreshing
+        }
+};
+
+function submitValueAfterPress (event){
+        if(lengthOfInputValue() > 0 && event.key === "Enter") { // if value`s length is over 0 AND Enter keyboard is pressed
+           inputValueOut();                                     // input value appears in format of list
+           event.preventDefault();                              // prevents window from refreshing
+        };
+};
+
+submitButton.addEventListener("onclick",submitValueAfterClick );
+input.addEventListener("keypress",submitValueAfterPress);
+
+////////////////////////////////////////////////////////////////////////////
+var css = document.querySelector("h3");
+var color1 = document.querySelector(".color1");
+var color2 = document.querySelector(".color2");
+
+function setGradient() {
+    document.body.style.background = `linear-gradient(to right, ${color1.value} , ${color2.value})`;
+    css.textContent = document.body.style.background + ";";
+};
+
+color1.addEventListener("input", setGradient);
+
+color2.addEventListener("input", setGradient);
+
+
+/*
+currying, compose, closure
+*/
+
+// closure  = uses function once, but remembers it as refernce to variables
+// currying = const Mult = (a) => (b) => a*b;
+// compose  = const compose = (f,g) => (a) => f(g(a));
+                                            // function f has function g within and a is paramater of g and g is parameter of f
+        //  = const sum = (num) => num + 1:
+        // compose(sum, sum)(5); sum(sum(5)); sum(num  = 5 + 1) -> num = 6 + 1 -> num = 7;
+ 
+
+/*
+
+        // Complete the below questions using this array:
+const array = [
+    {
+      username: "john",
+      team: "red",
+      score: 5,
+      items: ["ball", "book", "pen"]
+    },
+    {
+      username: "becky",
+      team: "blue",
+      score: 10,
+      items: ["tape", "backpack", "pen"]
+    },
+    {
+      username: "susy",
+      team: "red",
+      score: 55,
+      items: ["ball", "eraser", "pen"]
+    },
+    {
+      username: "tyson",
+      team: "green",
+      score: 1,
+      items: ["book", "pen"]
+    },
+  ];
+  
+        // adding a key and value to object 
+
+        function addKeyAndValue(arr,key,value){
+            arr.forEach(function(val){
+                val[key] = value;
+            });
+            return arr;
+        }
+
+        addKeyAndValue(array,"titel", "instructor");
+
+
+        let str   = "Matte";
+        let regex =  /[a,i,e,o]/g;
+        let found = str.match(regex);
+
+        console.log(found);
+
+        const counts = {};
+        const sampleArray = ['a', 'a', 'b', 'c'];
+        sampleArray.forEach(function (x) { counts[x] = (counts[x] || 0) + 1; });
+        console.log(counts)
+
+
+        function vowelCount(str){
+            var splitArr = str.toLowerCase().split("");  //splits string into array
+             var obj = {};                               // object
+             var vowels = "aeiou";                       //string of vowels
+         
+             splitArr.forEach(function(letter){          //splitted array forEach()
+                 if(vowels.indexOf(letter) !== -1){      // if vowel's index characters not equal to -1
+                     if(obj[letter]){                    //   then if obj[character] true 
+                         obj[letter]++;                  //       then obj[letter] ++
+                     } else{                             //       else obj[letter] = 1
+                         obj[letter] = 1;
+                     }
+                 }
+             });
+             return obj;                                 // return object
+         }
+
+         class player {
+            constructor(name, type){
+                this.name = name;
+                this.type = type;
+            }
+            introduce(){
+                console.log(`Hi ${this.name}, I am ${this.type}`);
+            }
+         };
+
+         let player1 = new player("mi", "wizard");
+
+
+         class wizard extends player{
+            constructor(name, type){
+                super(name, type)    //required
+            }
+            play() {
+                console.log(`Weee, I am ${this.type}`);
+            }
+         }
+
+         let wizard1 = new wizard("ma", "wizardo");
+
+
+         let obj = {
+            my: 'name',
+            is: 'Rudolf',
+            the: 'raindeer'
+          }
+
+          let entries = Object.entries(obj);
+          console.log(entries);
+          console.log(entries.flat().join(" "));
+
+          const user1 = "       sad   ";
+          console.log(user1.trimStart().trimEnd());
+
+
+
+          let greeting = [["Hello", "young", "grasshopper!"], ["you", "are"], ["learning", "fast!"]];
+
+          greeting.forEach(j);
+          
+          function j(currentValue,index,array){
+            return array[index] = currentValue.join(" ");
+          };
+
+          console.log(greeting);
+
+
+          const userEmail3 = '     cannotfillemailformcorrectly@gmail.com   '
+
+          console.log(userEmail3.trimStart().trimEnd());
+
+          let users = { user1: 18273, user2: 92833, user3: 90315 }
+
+          let obj1 =  Object.entries(users);
+          let obj2 =  Object.values(users);
+          let obj3 =  Object.keys(users);
+
+          console.log(obj1);
+          let objj = obj1.map( ( index) => [index[0], index[1] * 2] );
+          console.log(Object.fromEntries(objj));
+
+          for(element of obj1 ) {
+            element[1] = element[1]*2;
+          }
+            console.log(obj1)
+
+
+
+       //   objj = obj1.flat();
+       //   objj.forEach( (element, index) => {if(index % 2 == 1){objj[index] = element*2;}})
+          
+*/
+       const array = [-1,0,3,100, 99, 2, 99] // should return 100
+       var max  = Math.min(...array);
+      /* 
+       for(element of array) { 
+                let temp = element;
+                if(max >= temp){}
+                else {max = temp;}
+            };
+      */
+     /*
+       array.forEach(element => {if(max >= element){}
+                                 else{max = element}}
+                    )
+     */
+    /*
+       for(let i = 0; i < array.length; i++){
+            if(max >= array[i]){}
+            else{max = array[i]};
+       };
+    */
+        
+    /*    
+
+         const array2 = ['a', 3, 4, 2] // should return 4
+
+            for(element of array2) {
+                let temp = element;
+                if(max >= temp){}
+                else {max = temp;};
+            }
+          
+
+            amazonBasket = {
+                glasses: 1,
+                books: 2,
+                floss: 100
+              };
+
+            
+
+            checkBasket(amazonBasket, "floss");
+              
+              function checkBasket(basket, lookingFor) {
+                for(item in basket){
+                    if(item === lookingFor){
+                        
+                       return console.log(item);
+                    }
+                   }
+                   return "nope"
+              };
+         */
+/*
+function* generatorFunction(){
+    yield "Neo";
+    yield "Morpheus";
+
+    return yield "Trinity";
+};
+
+const generator = generatorFunction();
+        console.log(generator.next());
+        console.log(generator.return("over"));
+        console.log(generator.next());
+*/
+
+
+//      for (item of generator){
+//        console.log(item);
+//      }
+
+//      const values = [...generator];
+//      console.log(values.join(","));
+
+
+//      let a = Object.values(generator.next())[0];
+//      console.log(a);
+      
+
+
+
+//Write an array of 1) 10 numbers
+                //  2) find out third highest number in the list
+
+let arrayOfNumbers = [2,12,-1,42,13,3,5334,32,0,100];
+
+let highestNumber = 0;
+let thirdHighestNumber;
+
+console.log(arrayOfNumbers.forEach(
+    () => { for(let number of arrayOfNumbers) {
+        if(number > highestNumber) {
+            highestNumber = number;
+        }//end of IF
+        return highestNumber;
+    } //end of FOR loop
+    
+  } //end of forEach()
+) )
+
+
+
+          
+
+
+

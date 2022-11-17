@@ -1,30 +1,27 @@
-html, body {
-    align-items: center;
-    display: grid;
-    justify-content: center;
+body {
+    display: block;
     margin: 0 auto;
     height: 100%;
+    text-align: center;
+    top: 15%;
+    background: linear-gradient(to right, red , yellow);
+}
+
+h3 {
+    font-size: medium;
+    font-family: 'Times New Roman', Times, serif;
 }
 
 .container{
-    border: 2px solid;
-    border-radius: 10px;
     align-items: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    height: 60%;
-    padding-top: 10%;
-    padding-right: 10%;
-    padding-left: 10%;
-    padding-bottom: 10%;
-    width: 100%;
-    
 }
 
 .inputContainer{
     display: flex;
-    justify-content: start;
+    justify-content: center;
 }
     #inputFieldGrocery{
         border-color: #f1f6ff;
@@ -41,7 +38,14 @@ html, body {
 
     .listContainer{
         display: flex;
-        justify-content: start;
+        justify-content: center;
         height: 100%;
-        width: 100%;
+    }
+
+    li {
+        
+    }
+
+    .done {
+        text-decoration: line-through;
     }
