@@ -993,7 +993,7 @@ const array = [
 
         addKeyAndValue(array,"titel", "instructor");
 
-
+/////////////////////////////////////////////////////////////////////////////////
         let str   = "Matte";
         let regex =  /[a,i,e,o]/g;
         let found = str.match(regex);
@@ -1022,7 +1022,7 @@ const array = [
              });
              return obj;                                 // return object
          }
-
+////////////////////////////////////////////////////////////////////////////////////////////////
          class player {
             constructor(name, type){
                 this.name = name;
@@ -1183,25 +1183,104 @@ const generator = generatorFunction();
 //Write an array of 1) 10 numbers
                 //  2) find out third highest number in the list
 
-let arrayOfNumbers = [2,12,-1,42,13,3,5334,32,0,100];
+////////////////////////////////////////////////////BUBLE SORT/////////////////////////////////////////////////////
 
-let highestNumber = 0;
-let thirdHighestNumber;
+function bubbleSort(arrayOfNumbers){
+for(let i = 0; i < arrayOfNumbers.length-1; i++){
+    for(let j = 0; j<arrayOfNumbers.length-i-1; j++){
+        if(arrayOfNumbers[j] > arrayOfNumbers[j+1]) {
 
-console.log(arrayOfNumbers.forEach(
-    () => { for(let number of arrayOfNumbers) {
-        if(number > highestNumber) {
-            highestNumber = number;
-        }//end of IF
-        return highestNumber;
-    } //end of FOR loop
-    
-  } //end of forEach()
-) )
+            let temp            = arrayOfNumbers[j];    //temporary storage is filled with j[0]
+            arrayOfNumbers[j]   = arrayOfNumbers[j+1];  //j[0] is filled with j[1] instead
+            arrayOfNumbers[j+1] = temp;                 //j[1] is filled with temporary storage value
+        }
+    } //end of j loop
+ }//end of i loop
+    return arrayOfNumbers;
+}
 
+////////////////////////////////////////////////////BUBLE SORT/////////////////////////////////////////////////////
 
+////////////////////////////////////////////////////THIRD HIGHEST NUMBER IN ARRAY//////////////////////////////////
+function thirdHighest(array){
+    return array[array.length -3];
+}
+////////////////////////////////////////////////////THIRD HIGHEST NUMBER IN ARRAY//////////////////////////////////
 
-          
+/*
+
+let messArrow = [1,2,4,591,392,391,2,5,10,2,1,1,1,20,20];                          //messArray   : array that going to be categorized             
+bubbleSort(messArrow);                                                             //bubbleSort  : to sort them before categorizing
+let uniqueArray = messArrow.filter((element, index) =>                             //uniqueArray : separate array for unique elements in messArray  
+                                    {return messArrow.indexOf(element) === index});
+let collection = [];                                                               //collection  : array where result of categorizing will be pushed
+
+    for ( let i = 0; i<uniqueArray.length; i++) {                                  //outer FOR   : checks through uniqueArray 
+        let storage = [];                                                          //sotrage     : temporary storage array to put categorized elements 
+
+        for( var j = 0; j<messArrow.length; j++){                                  //inner FOR   : count through messArray elements 
+            
+            if(uniqueArray[i] == messArrow[j]){                                    //outer IF    : checks whether uniqueArray element and messArray elements match
+                if( messArrow.filter((value) =>value === messArrow[j]).length === 1 ){ //inner IF: checks number of unique elements in messArrow. If only one the it added directly to final collection arrow
+                    collection.push(uniqueArray[i]);
+                }
+                else {                                                             //inner else  : else all match elements are added to temporary storage and then added to collection arrow
+                    storage.push(messArrow[j]);            
+                }//if loop: inner
+            }//if loop:outer
+        }//inner for loop
+            if(storage.length > 0){                                                //final if    : checks whether temporary storage length for length if 0 empty arrow is not added into collection arrow
+                collection.push(storage);
+            }//final if before adding into collection  
+    }//outer for loop
+    console.log(collection);                                                       //result      
+*/
+
+/*
+///////////////////////////////////variables//////////////////////////////////////////////
+let messArrow  = [1,2,4,591,391,"391","2",5,10,2,"1",1,1,"20",20];
+    bubbleSort(messArrow);                                                          //buble sorting messArrow elements
+let collection = [];                                                                //collection array for merging String and Number elements 
+var storageString = [];                                                             //temporary storage for String elements 
+var storageNumber = [];                                                             //temporary storage for Number elements
+/////////////////////////////////////////////////////////////////////////////////////////   
+for(let i = 0; i < messArrow.length; i++){                                          
+    if(typeof messArrow[i] === "string") {
+        storageString.push(messArrow[i]);
+    }
+    else {
+        storageNumber.push(messArrow[i]);
+    };
+}
+if(storageNumber.length > 0 || storageString.length > 0){
+    collection.push(storageNumber);
+    collection.push(storageString);
+}
+/////////////////////////////////////////////////////////////////////////////////////////
+    console.log(collection);
+*/
+
+/*
+///////////////////////FUNTION THAT FINDS ADDITION OF TWO NUMBERS FROM AN ARRAY/////////
+let arrayOfNumbers = [1,4,2,5,6]; 
+console.log(findNum(arrayOfNumbers,5));
+function findNum(array, targetNumber) {
+        for(let i = 0; i < array.length; i++){
+
+            for(let j = 0; j < array.length; j++){
+
+                if((array[i]+array[j]) == targetNumber){
+                    return console.log("the number you were looking for is: ",targetNumber);
+                }
+                else {
+                    console.log("no yet");
+                }
+            }
+        };
+};
+
+/////////////////////////////////////////////////////////////////////////////////////////
+*/
 
 
 
