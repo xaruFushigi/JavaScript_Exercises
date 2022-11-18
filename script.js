@@ -1282,5 +1282,79 @@ function findNum(array, targetNumber) {
 /////////////////////////////////////////////////////////////////////////////////////////
 */
 
+let a = 201;
+let b = 20;
+let c = 60;
+
+let d = (a % 16);
+    a = Math.floor(a/16);    
+
+let e = Math.floor(b/16);    
+    b = (b % 16);
+
+let f = Math.floor(c/16);
+    c = c % 16;
+
+
+//Global Variables
+
+console.log(rgbToHex(201));
+
+//Function to Convert RGB to Hex
+function rgbToHex (red, green, blue) {
+    let temporaryStorage;
+    let temporaryStorageGreen;
+    let temporaryStorageBlue;
+
+    temporaryStorage = Math.floor(red/16);
+                red  = red % 16;
+    temporaryStorageGreen = Math.floor(green/16);
+                    green = green % 16;
+    temporaryStorageBlue  = Math.floor(blue/16);
+                    blue  = blue % 16;
+
+    if(temporaryStorage > 9){
+        switch(temporaryStorage) {
+            case 10:
+                 temporaryStorage = "A";
+                 temporaryStorage = "A";
+                 temporaryStorage = "A";
+                 break;
+            case 11:
+                 temporaryStorage = "B";
+                 temporaryStorage = "B";
+                 temporaryStorage = "B";
+                 break;
+            case 12:
+                 temporaryStorage = "C";
+                 temporaryStorage = "C";
+                 temporaryStorage = "C";
+                 break;
+            case 13:
+                 temporaryStorage = "D";
+                 temporaryStorage = "D";
+                 temporaryStorage = "D";
+                 break;
+            case 14:
+                 temporaryStorage = "E";
+                 temporaryStorage = "E";
+                 temporaryStorage = "E";
+                 break;
+            case 15:
+                 temporaryStorage = "F";
+                 temporaryStorage = "F";
+                 temporaryStorage = "F";
+                 break;
+            default:
+                 "error";
+        };
+    };
+                
+  return  console.log(`#${temporaryStorage}${red}`);
+};
+
+
+
+
 
 
