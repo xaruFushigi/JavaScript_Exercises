@@ -1287,4 +1287,64 @@ function findNum(array, targetNumber) {
 
 
 
+var arrayOfHex = []; //global variable 
+
+let rgb = false;
+
+
+
+if(rgb) {
+    
+    function rgbToHexFinal(red, green, blue) {
+    
+    rgbToHex(red, green, blue); //inner fuction which calculates HEX code
+
+    for(let i = 0; i<arrayOfHex.length; i++){
+    switch(arrayOfHex[i]){
+        case 10:
+            arrayOfHex[i] = "A";
+            break;
+        case 11:
+            arrayOfHex[i] = "B";
+            break;  
+        case 12:
+            arrayOfHex[i] = "C";
+            break;
+        case 13:
+            arrayOfHex[i] = "D";
+            break;  
+        case 14:
+            arrayOfHex[i] = "E";
+            break;
+        case 10:
+            arrayOfHex[i] = "F";
+            break;
+        default:
+            "error";
+        }//end of switch statement
+    };//end of outer for loop
+
+    function rgbToHex (red, green, blue) {
+        let arrayOfRgb = [red, green, blue];
+
+    for (let i = 0; i < arrayOfRgb.length; i++) {
+        //temporary variables
+        let tempHex;
+        let tempHexReminder;
+        //entering value to temporary variables
+        tempHex         = Math.floor(arrayOfRgb[i] / 16);
+        tempHexReminder = arrayOfRgb[i] % 16;
+        //pushing temporary variables to arrayOfHex
+        arrayOfHex.push(tempHex);
+        arrayOfHex.push(tempHexReminder);
+    };//end of inner for loop
+
+        return arrayOfHex; //return of function
+    };//end of rgbToHex function
+    rgb = true;
+    return `#${arrayOfHex.join("")}`;
+}
+
+};
+
 
